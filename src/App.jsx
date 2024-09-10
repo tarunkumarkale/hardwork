@@ -1,22 +1,60 @@
+import { useState } from "react";
 
-import { useState } from "react"
-import bike from "./bike"
-import Card from "./card"
+const App = () => {
+  const [first, setfirst] = useState({
+    fname: '',
+    lname: ''
+  });
 
-const App=()=>{
+  const [second, setsecond] = useState('');
 
-const [bikedetails,setbikedetails]=useState(bike)
-console.log(bikedetails[3].name)
+  const hello = (e) => {
+    const value = e.target.value;
+    const name = e.target.name;
+    setfirst((pre) => {
+      if (name === 'fname') {
+        return {
+          fname: value,
+          lname: pre.lname
+        };
+      } else if (name === 'lname') {
+        return {
+          fname: pre.fname,
+          lname: value
+        };
+      }
+      return pre;
+    });
+  };
 
-return (
-<>
-{
-bikedetails.map((element, index) => (
-  <Card {...element} key={Element.name}/>
-))}
-</>
-)
+  const letsgo = (e) => {
+    e.preventDefault();
+    const thousand = `${first.fname} and ${first.lname}`;
+    setsecond(thousand);
+  };
 
-}
+  return (
+    <div>
+      <form onSubmit={letsgo}>
+        <input 
+          type="text" 
+               className="border border-red-600"
+          onChange={hello} 
+          value={first.fname} 
+          name='fname' 
+        />
+        <input 
+        className="border border-red-600"
+          type="text" 
+          onChange={hello} 
+          value={first.lname} 
+          name='lname' 
+        />
+        <button type="submit">Click</button>
+        <p>{second}</p>
+      </form>
+    </div>
+  );
+};
 
-export default App
+export default App;
