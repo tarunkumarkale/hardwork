@@ -1,58 +1,30 @@
-import { useState } from "react";
 
-const App = () => {
-  const [first, setfirst] = useState({
-    fname: '',
-    lname: ''
-  });
 
-  const [second, setsecond] = useState([]);
 
-  const hello = (e) => {
-    const value = e.target.value;
-    const name = e.target.name;
-    setfirst((pre) => ({
-      ...pre,
-      [name]: value
-    }));
+import React, { useRef } from 'react';
+
+function ButtonWithRef() {
+  // Creating a ref to hold the button element
+  const buttonRef = useRef();
+
+  // Function to change the text content of the button
+  const changeButtonText = () => {
+    // Accessing the current property of the ref to get the button element
+    const button = buttonRef.current;
+
+    // Changing the text content of the button
+    button.textContent = 'Text Changed!';
   };
-
-  console.log(first);
-
-  const letsgo = (e) => {
-    e.preventDefault();
-    const thousand = `${first.fname} and ${first.lname}`;
-    setsecond((pre) => [...pre, thousand]);
-  };
-
-  console.log(second);
 
   return (
     <div>
-      <form onSubmit={letsgo}>
-        <input 
-          type="text" 
-          className="border border-red-600"
-          onChange={hello} 
-          value={first.fname} 
-          name='fname' 
-        />
-        <input 
-          className="border border-red-600"
-          type="text" 
-          onChange={hello} 
-          value={first.lname} 
-          name='lname' 
-        />
-        <button type="submit">Click</button>
-      </form>
-      <div>
-        {second.map((ele, index) => (
-          <p key={index}>{ele}</p>
-        ))}
-      </div>
+      {/* The button element with the ref */}
+      <button ref={buttonRef} onClick={changeButtonText}>
+        Click me to change text
+      </button>
     </div>
   );
-};
+}
 
-export default App;
+export default ButtonWithRef;
+
