@@ -1,30 +1,29 @@
 
-
-
 import React, { useRef } from 'react';
 
-function ButtonWithRef() {
-  // Creating a ref to hold the button element
-  const buttonRef = useRef();
+function App() {
+  // Creating refs for the input and output elements
+  const inputRef = useRef();
+  const outputRef = useRef();
 
-  // Function to change the text content of the button
-  const changeButtonText = () => {
-    // Accessing the current property of the ref to get the button element
-    const button = buttonRef.current;
-
-    // Changing the text content of the button
-    button.textContent = 'Text Changed!';
+  // Function to handle button click and display inputted data
+  const showData = () => {
+    const inputValue = inputRef.current.value;
+    outputRef.current.textContent = `You entered: ${inputValue}`;
   };
 
   return (
     <div>
-      {/* The button element with the ref */}
-      <button ref={buttonRef} onClick={changeButtonText}>
-        Click me to change text
-      </button>
+      {/* Input field with ref */}
+      <input type="text" ref={inputRef} placeholder="Type something..." />
+
+      {/* Button to trigger the showData function */}
+      <button onClick={showData}>Show Data</button>
+
+      {/* Output area with ref to display the entered data */}
+      <div ref={outputRef}></div>
     </div>
   );
 }
 
-export default ButtonWithRef;
-
+export default App;
