@@ -22,6 +22,7 @@ function App() {
 
       {/* Output area with ref to display the entered data */}
       <div ref={outputRef}></div>
+      <div>hello taurn kale</div>
     </div>
   );
 }
