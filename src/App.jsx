@@ -6,41 +6,25 @@ const App = () => {
   const [greeting, setGreeting] = useState('');
   const [ampm, setAMPM] = useState('');
   
-  // Function to update time and greeting
-  const updateTime = () => {
-    const now = new Date();
-    let hour = now.getHours();
-    let minute = now.getMinutes();
-    let second = now.getSeconds();
+  const fun=()=>{
+    const time=new Date().getHours()
 
-    const formattedTime = now.toLocaleTimeString(); // Get formatted time like '10:30:50 AM'
-    let greetingText = '';
-    let AMPM = '';
+if(timeing>=0 && timeing<=12 ){
+setTime(  new Date().toLocaleTimeString )
+setGreeting('goodmorning')
+setAMPM('am')
+}
+else if(timeing>12 && timeing<=23 ){
+setTime(  new Date().toLocaleTimeString )
+setGreeting('not goodmorning')
+setAMPM('pm')
+}
 
-    if (hour >= 0 && hour < 12) {
-      greetingText = 'Good Morning';
-      AMPM = 'AM';
-    } else if (hour >= 12 && hour < 17) {
-      greetingText = 'Good Afternoon';
-      AMPM = 'PM';
-    } else if (hour >= 17 && hour < 21) {
-      greetingText = 'Good Evening';
-      AMPM = 'PM';
-    } else {
-      greetingText = 'Good Night';
-      AMPM = 'PM';
-    }
+  }
 
-    setTime(formattedTime);
-    setGreeting(greetingText);
-    setAMPM(AMPM);
-  };
+setInterval( fun, 1000);
 
-  // Update time every second
-  useEffect(() => {
-    const interval = setInterval(updateTime, 1000); // Updates every second
-    return () => clearInterval(interval); // Cleanup on unmount
-  }, []);
+
 
   return (
     <div>
