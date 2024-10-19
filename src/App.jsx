@@ -9,24 +9,28 @@ const App = () => {
   const fun=()=>{
     const time=new Date().getHours()
 
-if(timeing>=0 && timeing<=12 ){
-setTime(  new Date().toLocaleTimeString )
+if(time>=0 && time<=12 ){
+setTime( new Date().toLocaleTimeString() )
 setGreeting('goodmorning')
 setAMPM('am')
 }
-else if(timeing>12 && timeing<=23 ){
-setTime(  new Date().toLocaleTimeString )
+else if(time>12 && time<=23 ){
+setTime(  new Date().toLocaleTimeString())
 setGreeting('not goodmorning')
 setAMPM('pm')
 }
 
   }
 
-setInterval( fun, 1000);
 
 
 
-  return (
+useEffect(()=>{
+  let first=setInterval(fun, 1000);
+     return ()=>clearInterval(first)
+},[])
+
+return (
     <div>
       <h1>{greeting}</h1>
       <h2>Current Time: {time}</h2>
