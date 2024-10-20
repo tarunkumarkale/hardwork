@@ -1,48 +1,29 @@
-import React, { useState, useEffect } from 'react';
-import './App.css';
-import Second from './HEllo';
-
+import React from 'react'
+import { useState } from 'react'
+import { useEffect } from 'react'
 
 const App = () => {
-  const [time, setTime] = useState('');
-  const [greeting, setGreeting] = useState('');
-  const [ampm, setAMPM] = useState('');
-  
-  const fun=()=>{
-    const time=new Date().getHours()
+const[time,settime]=useState(0) 
+const[hello,sethello]=useState(0) 
 
-if(time>=0 && time<=12 ){
-setTime( new Date().toLocaleTimeString() )
-setGreeting('goodmorning')
-setAMPM('am')
+let final=new Date().getHours()
+
+const funtimer=()=>{
+if(final >=0){
+    set
 }
-else if(time>12 && time<=23 ){
-setTime(  new Date().toLocaleTimeString())
-setGreeting('not goodmorning')
-setAMPM('pm')
 }
-
-  }
-
-
-
 
 useEffect(()=>{
-  let first=setInterval(fun, 1000);
-     return ()=>clearInterval(first)
-     console.log(Second)
+setInterval(funtimer,1000)
 },[])
 
-return (
+
+  return (
     <div>
-      {/* <h1>{greeting}</h1> */}
-      {/* <h2>Current Time: {time}</h2> */}
-      {/* <h3>{ampm}</h3> */}
-
-      <Second/>
-
+      {time}
     </div>
-  );
-};
+  )
+}
 
-export default App;
+export default App
