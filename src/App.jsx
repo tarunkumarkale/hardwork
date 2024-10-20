@@ -1,22 +1,24 @@
-import React, { useState } from 'react'
-const App = () => {
-  const [first,setfirst]=useState('')
-  const [second,setsecond]=useState('')
+import react, { useState } from 'react'
+import Card from './Card'
 
-  const click =()=>{
-    setsecond(first)
-  }
-
-  return (
-<div>
-    <input type="text"  onChange={(e)=>setfirst(e.target.value)} value={first} />    
+const App=()=>{
 
 
+const [first,setfirst]=useState()
 
-                <button onClick={click}>click</button>
-                <h1>{second}</h1>
-</div>
+const data=[
+  {name:'jhon',age:'23',Id:'0'},
+  {name:'kale',age:'43',Id:'1'},
+  {name:'left',age:'34',Id:'2'},
+  {name:'right',age:'88',Id:'3'},
+]
+
+  return(
+
+    <div>
+      {data.map((Element,index,Array)=> {<Card  {...data} />} )}
+    </div>
+   
   )
 }
-
 export default App
