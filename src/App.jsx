@@ -1,34 +1,36 @@
-import React, { useState } from 'react'
-import Card from './Card'
+import React from 'react'
+import { useState } from 'react'
+import { useEffect } from 'react'
 
 const App = () => {
+const [first,setfirst]=useState(0)
+  // api call practice
 
-  const [first, setFirst] = useState('')
-  const [second, setSecond] = useState([])
+   useEffect(()=>{
+ const controller= new AbortController()
+ console.log(controller)
+ const signal=controller.signal
 
-  const handleInputChange = (e) => {
-    let task = e.target.value
-    setFirst(task)
-  }
 
-  const addTask = () => {
-    setSecond((prev) => [...prev, first])
-    setFirst('')
-  }
+        const Cat=async()=>{
+try {
+  const response=await fetch ('https://api.thecatapi.com/v1/images/search?limit=5&breed_ids=beng&api_key=REPLACE_ME',{signal})
+  const data= await response.json()
+  setfirst(data)
+  console.log(signal)
+console.log(data)
+} catch (error) {
+  console.log(error)
+}
+}
 
-  const deleteTask = (index) => {
-    let remainingTasks = second.filter((_, i) => i !== index)
-    setSecond(remainingTasks)
-  }
+Cat()
+return ()=>controller.abort()
+   },[])
 
   return (
     <div>
-      <input type="text" value={first} onChange={handleInputChange} />
-      <button onClick={addTask}>click</button>
-
-      {second.map((ele, index) => 
-        <Card key={index} task={ele} del={() => deleteTask(index)} />
-      )}
+          
     </div>
   )
 }
