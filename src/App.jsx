@@ -1,28 +1,21 @@
-import React from 'react'
-import { useState } from 'react'
-import { useEffect } from 'react'
-
+import React, { useState } from 'react'
 const App = () => {
-const[time,settime]=useState(0) 
-const[hello,sethello]=useState(0) 
+  const [first,setfirst]=useState('')
+  const [second,setsecond]=useState('')
 
-let final=new Date().getHours()
-
-const funtimer=()=>{
-if(final >=0){
-    set
-}
-}
-
-useEffect(()=>{
-setInterval(funtimer,1000)
-},[])
-
+  const click =()=>{
+    setsecond(first)
+  }
 
   return (
-    <div>
-      {time}
-    </div>
+<div>
+    <input type="text"  onChange={(e)=>setfirst(e.target.value)} value={first} />    
+
+
+
+                <button onClick={click}>click</button>
+                <h1>{second}</h1>
+</div>
   )
 }
 
