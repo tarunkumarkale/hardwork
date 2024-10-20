@@ -1,38 +1,25 @@
-import React from 'react'
-import { useState } from 'react'
-import { useEffect } from 'react'
+import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Contact from './FOLDER/Contact.jsx';
+import Type from './FOLDER/TYPE.jsx';
+import About from './FOLDER/About.jsx';
+import Home from './FOLDER/Home.jsx';
+import Navbar from './FOLDER/Navbar.jsx';
 
 const App = () => {
-const [first,setfirst]=useState(0)
-  // api call practice
-
-   useEffect(()=>{
- const controller= new AbortController()
- console.log(controller)
- const signal=controller.signal
-
-
-        const Cat=async()=>{
-try {
-  const response=await fetch ('https://api.thecatapi.com/v1/images/search?limit=5&breed_ids=beng&api_key=REPLACE_ME',{signal})
-  const data= await response.json()
-  setfirst(data)
-  console.log(signal)
-console.log(data)
-} catch (error) {
-  console.log(error)
-}
-}
-
-Cat()
-return ()=>controller.abort()
-   },[])
-
   return (
     <div>
-          
+      <BrowserRouter>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home/>} />
+          <Route path="/about" element={<About   name='heoo tjahdfljhdfklj'/>} /> {/* Corrected paths */}
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/type" element={<Type />} />
+        </Routes>
+      </BrowserRouter>
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;
